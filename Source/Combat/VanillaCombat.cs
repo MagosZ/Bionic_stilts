@@ -117,12 +117,39 @@ namespace StiltsBionics
 
     /// <summary>Vanilla (non-CE) rounds in flight: vanilla stops a round at the first wall in its path. A round fired by
     /// or at an extended stilt pawn flies the 3D line from the shooter's muzzle to the target's top, and passes over
-    /// any cell where that line is above everything standing in the cell.</summary>
+    /// any cell where that line is above everything standing in the cell.
+    /// Vanilla facts, from mod sources (no game code read): Projectile.CheckForFreeInterceptBetween walks the round's
+    /// path in steps and calls the private CheckForFreeIntercept(IntVec3) per cell; for each thing there that CanHit
+    /// allows, a pawn gets a stance-based chance, a full-fillage thing other than an open door is hit for certain
+    /// ("int-wall"), other things by fillPercent (SCV Ready, workshop 3354842892, Projectile_Homing.cs, a
+    /// re-implementation of that loop; Vehicle Framework release/1.6 Patch_Combat.cs, which transpiles
+    /// CheckForFreeIntercept by name and reads the fields origin and destination).</summary>
     [HarmonyPatch]
     public static class VanillaPatch_CheckForFreeIntercept
     {
-        private static readonly MethodInfo Target = AccessTools.Method(typeof(Projectile), "CheckForFreeIntercept",
-            new[] { typeof(IntVec3) });
+        private static readonly MethodInfo Target = ResolveTarget();
+
+        private static MethodInfo ResolveTarget()
+        {
+            MethodInfo method = AccessTools.Method(typeof(Projectile), "CheckForFreeIntercept", new[] { typeof(IntVec3) });
+            if (method != null)
+            {
+                return method;
+            }
+            // Another signature in some version: accept it only if the cell still comes first (the prefix binds __0).
+            foreach (MethodInfo candidate in AccessTools.GetDeclaredMethods(typeof(Projectile)))
+            {
+                if (candidate.Name == "CheckForFreeIntercept" && !candidate.IsStatic && candidate.ReturnType == typeof(bool))
+                {
+                    ParameterInfo[] ps = candidate.GetParameters();
+                    if (ps.Length >= 1 && ps[0].ParameterType == typeof(IntVec3))
+                    {
+                        return candidate;
+                    }
+                }
+            }
+            return null;
+        }
 
         private static readonly AccessTools.FieldRef<Projectile, Vector3> Origin = FieldRef<Vector3>("origin");
         private static readonly AccessTools.FieldRef<Projectile, Vector3> Destination = FieldRef<Vector3>("destination");

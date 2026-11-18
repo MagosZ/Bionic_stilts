@@ -111,6 +111,13 @@ Combat Extended optional.
   `Verb_LaunchProjectile` verbs (from the cell, then vanilla's lean cells; range checked first), and a prefix on
   private `Projectile.CheckForFreeIntercept(IntVec3)`: a round fired by or at an extended pawn passes any cell where
   its line (muzzle -> target top) is above everything standing there.
+- Vanilla flight facts behind that patch, from mod sources (no game code read): `CheckForFreeInterceptBetween`
+  walks the path in steps and calls private `CheckForFreeIntercept(IntVec3)` per cell; for each thing `CanHit`
+  allows, a pawn gets a stance-based chance, a full-fillage thing other than an open door is hit for certain
+  ("int-wall"), anything else by fillPercent. Sources: SCV Ready (workshop 3354842892) `Projectile_Homing.cs`
+  re-implements that loop; Vehicle Framework release/1.6 `Patch_Combat.cs` transpiles `CheckForFreeIntercept` by name
+  and binds the fields `origin`/`destination`; SCV also uses `intendedTarget` as a LocalTargetInfo field. So
+  without the patch an extended pawn's rounds would stop in the first wall they fly over.
 - Partial cover never blocks sight or fire in vanilla; cover is handled in section 5.
 
 ## 7. Settings

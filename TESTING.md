@@ -54,8 +54,10 @@ behind a wall far away.
 1. The extended pawn targets and hits the first raider over its own wall; the first raider can shoot back.
 2. Neither can target the other across the wall hugging the second raider.
 3. A raider under a roof (or inside a roofed building with an open door) can't be targeted, and can't shoot back.
-4. Vanilla only: the extended pawn's rounds don't stop in its own wall (they did before patch = CheckForFreeIntercept
-   missing: look for its warning). Assumption to verify: vanilla rounds are stopped by full-fillage things in flight.
+4. Vanilla only: the extended pawn's rounds don't stop in its own wall. If they do, look for the warning
+   "Projectile.CheckForFreeIntercept or its fields not found". (That vanilla rounds stop at full-fillage things in
+   flight is confirmed from two mods' sources; see DESIGN 6.2.) With dev mode "draw shooting", vanilla throws the
+   text "int-wall" where a round hits a wall.
 5. CE only: aim raise: rounds clear a wall partway along the line instead of hitting it; rounds pass sandbags next
    to the target; extended pawn hit mostly in the body; some rounds (about 15% of those crossing the stilt zone) hit
    a stilt; a stilt shot off -> fall.
