@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <!-- The pair as an item: crafted at the fabrication bench once Bionics is researched, like other bionics. It never
+       spawns on generated pawns (no techHediffsTags): the install surgery is one bill for both legs. -->
+  <ThingDef ParentName="BodyPartBionicBase">
+    <defName>SB_BionicStilts</defName>
+    <label>bionic stilts</label>
+    <description>A pair of bionic legs built around telescopic struts. Retracted, they work like a good pair of bionic legs. Extended, they lift the wearer to a height of six metres, high enough to look down over cover and over a nearby wall and to shoot further, and low enough to be shot at over the same walls. Nobody fits under a roof on them: the wearer stops at the edge of one and retracts first.\n\nInstalled as a pair in one surgery, replacing both legs.</description>
+    <descriptionHyperlinks><RecipeDef>SB_InstallBionicStilts</RecipeDef></descriptionHyperlinks>
+    <graphicData>
+      <texPath>StiltsBionics/Things/BionicStilts</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>0.9</drawSize>
+      <color>(255,255,255)</color>
+    </graphicData>
+    <techHediffsTags Inherit="False" />
+    <costList>
+      <Plasteel>40</Plasteel>
+      <ComponentSpacer>10</ComponentSpacer>
+    </costList>
+    <statBases>
+      <WorkToMake>52000</WorkToMake>
+      <Mass>16</Mass>
+    </statBases>
+  </ThingDef>
+
+  <!-- One stilt per leg. Leaving out spawnThingOnRemoved is on purpose: the pair comes back whole only through
+       SB_RemoveBionicStilts, and vanilla's per-leg surgeries skip legs with a stilt. -->
+  <HediffDef ParentName="AddedBodyPartBase">
+    <defName>SB_BionicStilt</defName>
+    <hediffClass>StiltsBionics.Hediff_BionicStilt</hediffClass>
+    <label>bionic stilt</label>
+    <labelNoun>a bionic stilt</labelNoun>
+    <description>One of a pair of bionic stilts. Retracted, it works like a bionic leg. A stilt alone cannot extend; it needs its partner.</description>
+    <descriptionHyperlinks><ThingDef>SB_BionicStilts</ThingDef></descriptionHyperlinks>
+    <addedPartProps>
+      <solid>true</solid>
+      <partEfficiency>1.25</partEfficiency>
+      <betterThanNatural>true</betterThanNatural>
+    </addedPartProps>
+  </HediffDef>
+
+  <!-- The extend state of the pair and its button. Added with the first stilt, removed with the last. -->
+  <HediffDef>
+    <defName>SB_StiltsControl</defName>
+    <hediffClass>HediffWithComps</hediffClass>
+    <label>telescopic stilts</label>
+    <description>The telescopic struts of a pair of bionic stilts. Extended, they lift the body to a height of six metres: ranged weapons reach further and cover no longer protects the target, but nobody fits under a roof.</description>
+    <defaultLabelColor>(0.6, 0.6, 1.0)</defaultLabelColor>
+    <isBad>false</isBad>
+    <everCurableByItem>false</everCurableByItem>
+    <comps>
+      <li Class="StiltsBionics.HediffCompProperties_Stilts">
+        <transitionTicks>120</transitionTicks>
+        <lift>2.43</lift>
+        <fallDamage>20</fallDamage>
+        <fallHits>4</fallHits>
+        <fallStunTicks>180</fallStunTicks>
+        <fallAboveFraction>0.25</fallAboveFraction>
+      </li>
+    </comps>
+  </HediffDef>
+
+  <!-- One surgery fits both legs. -->
+  <RecipeDef ParentName="SurgeryInstallBodyPartArtificialBase">
+    <defName>SB_InstallBionicStilts</defName>
+    <label>install bionic stilts</label>
+    <description>Install a pair of bionic stilts, replacing both legs.</description>
+    <descriptionHyperlinks>
+      <ThingDef>SB_BionicStilts</ThingDef>
+      <HediffDef>SB_BionicStilt</HediffDef>
+    </descriptionHyperlinks>
+    <workerClass>StiltsBionics.Recipe_InstallBionicStilts</workerClass>
+    <jobString>Installing bionic stilts.</jobString>
+    <targetsBodyPart>false</targetsBodyPart>
+    <workAmount>4000</workAmount>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>SB_BionicStilts</li>
+          </thingDefs>
+        </filter>
+        <count>1</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>SB_BionicStilts</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+  </RecipeDef>
+
+  <RecipeDef ParentName="SurgeryRemoveImplantBase">
+    <defName>SB_RemoveBionicStilts</defName>
+    <label>remove bionic stilts</label>
+    <description>Remove both bionic stilts, leaving the patient without legs. The pair is recovered only if both stilts are still there; a lone stilt is scrap.</description>
+    <descriptionHyperlinks>
+      <ThingDef>SB_BionicStilts</ThingDef>
+    </descriptionHyperlinks>
+    <workerClass>StiltsBionics.Recipe_RemoveBionicStilts</workerClass>
+    <jobString>Removing bionic stilts.</jobString>
+    <targetsBodyPart>false</targetsBodyPart>
+    <workAmount>4000</workAmount>
+  </RecipeDef>
+
+</Defs>

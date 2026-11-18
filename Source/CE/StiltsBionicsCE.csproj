@@ -1,0 +1,37 @@
+<Project Sdk="Microsoft.NET.Sdk">
+	<!-- The Combat Extended rules for extended stilts (heights, line of fire, sight, aim, rounds, suppression),
+	     ported from the author's Elevated Gun Platform as separate code. Output goes to CE/Assemblies, which
+	     LoadFolders.xml loads only when CE is active. Built against the main DLL (never copied) and CE's DLL.
+
+	     Release build (builds the main DLL first):
+	         dotnet build StiltsBionicsCE.csproj -c Release -nodeReuse:false -p:UseSharedCompilation=false -->
+	<PropertyGroup>
+		<TargetFramework>net48</TargetFramework>
+		<LangVersion>latest</LangVersion>
+		<Nullable>disable</Nullable>
+		<ImplicitUsings>disable</ImplicitUsings>
+		<AssemblyName>StiltsBionicsCE</AssemblyName>
+		<RootNamespace>StiltsBionics.CE</RootNamespace>
+		<OutputPath>..\..\CE\Assemblies\</OutputPath>
+		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+		<GenerateDependencyFile>false</GenerateDependencyFile>
+		<CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
+		<DebugType>none</DebugType>
+		<DefaultItemExcludes>$(DefaultItemExcludes);obj/**;bin/**</DefaultItemExcludes>
+		<!-- Point this at your installed Combat Extended folder -->
+		<CEDir>C:\Games\Steam\steamapps\workshop\content\294100\2890901044</CEDir>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Krafs.Rimworld.Ref" Version="1.6.4871" />
+		<PackageReference Include="Lib.Harmony" Version="2.4.3" ExcludeAssets="runtime" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\StiltsBionics.csproj" Private="false" />
+		<Reference Include="CombatExtended">
+			<HintPath>$(CEDir)\Assemblies\CombatExtended.dll</HintPath>
+			<Private>false</Private>
+		</Reference>
+	</ItemGroup>
+</Project>

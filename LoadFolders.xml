@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<loadFolders>
+	<!-- CE holds StiltsBionicsCE.dll, the Combat Extended rules (heights, line of fire, aim, rounds). It is loaded
+	     only when Combat Extended is active; without CE the main DLL runs its own vanilla rules. -->
+	<v1.6>
+		<li>/</li>
+		<li IfModActive="CETeam.CombatExtended">CE</li>
+	</v1.6>
+	<v1.7>
+		<li>/</li>
+		<li IfModActive="CETeam.CombatExtended">CE</li>
+	</v1.7>
+</loadFolders>

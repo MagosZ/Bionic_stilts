@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+	<name>Stilts Bionics</name>
+	<author>MagosZ</author>
+	<url>https://github.com/MagosZ/StiltsBionics</url>
+	<packageId>magosz.stiltsbionics</packageId>
+	<supportedVersions>
+		<li>1.6</li>
+		<li>1.7</li>
+	</supportedVersions>
+	<description>A pair of bionic legs with telescopic stilts inside. Retract them and your colonist walks like anyone with good bionic legs. Extend them and your colonist stands six metres tall, looks down over cover and over the wall next to them, and shoots further. Just mind the roof. Works with or without Combat Extended.
+
+THE STILTS
+Researched with Bionics and made at the fabrication bench (40 plasteel, 10 advanced components). One surgery fits the pair and replaces both legs. Retracted, each stilt works like a bionic leg (125%). The surgery "remove bionic stilts" takes both off and gives the pair back if both were still there; a lone stilt is scrap. Vanilla's single-leg surgeries leave stilted legs alone.
+
+EXTEND AND RETRACT
+Select the colonist and press "Extend stilts" or "Retract stilts". Each takes 2 seconds, during which the colonist stands still and can't attack. The stilts can't extend under a roof, and only with both stilts in place. The health tab shows their state.
+
+UP THERE (6 m)
+- Ranged weapons reach 25% further (mod setting).
+- Cover does not protect the target, and the colonist's shots never hit cover instead of the target.
+- The colonist is too tall to hide: cover does not protect them either.
+- Walls in the half of the line nearest the colonist do not block, in either direction: they can fire over their own wall or over a wall they stand next to, but not over a wall hugging the target, and enemies can shoot them over the same walls. Targets under a roof stay out of reach (the roof is in the way), and so are shooters under a roof.
+- Under Combat Extended this is real 3D: the body is lifted 2.43 units (top 3.43, gun at 3.28; a wall is 2.0), the same height rules as the Elevated Gun Platform mod. Rounds from the stilts fly through sandbags and barricades. Below the body there are only two thin poles: a round crossing them hits a pole 15% of the time (mod setting), and that hit lands on a stilt.
+
+ROOFS
+A colonist on extended stilts stops at the edge of a roof and retracts before walking under it. If drafted, they extend again by themselves once they stop in the open. Doors are no obstacle; a roofed doorway is a roof. If a roof is built over them, they retract. Lying down, sleeping or being downed folds the stilts at once.
+
+FALLING
+Lose a stilt while up (shot off, cut off) and the colonist falls six metres: 20 blunt damage over a few body parts and 3 seconds stunned.
+
+COMPATIBILITY
+Requires Harmony. Combat Extended is optional; load this mod after it. Elevated Gun Platform can run alongside: both use the same 3D rules. Only colonists use the extend button; the AI never extends stilts. Remove the mod only when no pawn has stilts.</description>
+	<modDependencies>
+		<li>
+			<packageId>brrainz.harmony</packageId>
+			<displayName>Harmony</displayName>
+			<steamWorkshopUrl>steam://url/CommunityFilePage/2009463077</steamWorkshopUrl>
+		</li>
+	</modDependencies>
+	<loadAfter>
+		<li>brrainz.harmony</li>
+		<li>CETeam.CombatExtended</li>
+	</loadAfter>
+</ModMetaData>

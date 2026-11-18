@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+
+  <StiltsBionics_Extend>Extend stilts</StiltsBionics_Extend>
+  <StiltsBionics_ExtendDesc>Extend the telescopic stilts to stand six metres tall (2 seconds, standing still). Up there, ranged weapons reach further, cover does not protect the target, and walls near the pawn no longer block its line of fire, nor the enemy's line of fire at it. The pawn stops at the edge of any roof and retracts before walking under it; if drafted, it extends again when it stops in the open.</StiltsBionics_ExtendDesc>
+  <StiltsBionics_Retract>Retract stilts</StiltsBionics_Retract>
+  <StiltsBionics_RetractDesc>Retract the telescopic stilts back to normal height (2 seconds, standing still).</StiltsBionics_RetractDesc>
+
+  <StiltsBionics_StateExtended>extended</StiltsBionics_StateExtended>
+  <StiltsBionics_StateExtending>extending</StiltsBionics_StateExtending>
+  <StiltsBionics_StateRetracting>retracting</StiltsBionics_StateRetracting>
+  <StiltsBionics_StateRetracted>retracted</StiltsBionics_StateRetracted>
+
+  <StiltsBionics_NotSpawned>Not on a map.</StiltsBionics_NotSpawned>
+  <StiltsBionics_NotStanding>{0} is not standing.</StiltsBionics_NotStanding>
+  <StiltsBionics_StiltMissing>{0} needs both stilts to extend them.</StiltsBionics_StiltMissing>
+  <StiltsBionics_UnderRoof>Can't extend under a roof.</StiltsBionics_UnderRoof>
+
+  <StiltsBionics_RoofRetract>{0} is under a roof: retracting stilts.</StiltsBionics_RoofRetract>
+  <StiltsBionics_Fell>{0} lost a stilt and fell six metres!</StiltsBionics_Fell>
+
+  <StiltsBionics_RangeExplanation>Extended stilts</StiltsBionics_RangeExplanation>
+
+  <StiltsBionics_SettingRange>Range bonus with extended stilts: {0}</StiltsBionics_SettingRange>
+  <StiltsBionics_SettingPoleHit>Combat Extended: chance a round crossing the stilts below the body hits a pole: {0}</StiltsBionics_SettingPoleHit>
+  <StiltsBionics_SettingDebug>Debug overlay (dev mode): show the 3D line checks</StiltsBionics_SettingDebug>
+  <StiltsBionics_SettingDebugTip>Flashes each cell of a stilt pawn's sight and line-of-fire checks: red blocked, green clear, with the line's height in Combat Extended units (a wall is 2.0).</StiltsBionics_SettingDebugTip>
+
+</LanguageData>

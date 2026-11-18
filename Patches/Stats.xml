@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <!-- Extended stilts lengthen a held ranged weapon's range. RangedWeapon_RangeMultiplier is the weapon stat that both
+       vanilla and Combat Extended read for range; the part checks who holds the weapon. -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/StatDef[defName="RangedWeapon_RangeMultiplier"]/parts</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>Defs/StatDef[defName="RangedWeapon_RangeMultiplier"]/parts</xpath>
+      <value>
+        <li Class="StiltsBionics.StatPart_StiltsRange" />
+      </value>
+    </match>
+    <nomatch Class="PatchOperationAdd">
+      <xpath>Defs/StatDef[defName="RangedWeapon_RangeMultiplier"]</xpath>
+      <value>
+        <parts>
+          <li Class="StiltsBionics.StatPart_StiltsRange" />
+        </parts>
+      </value>
+    </nomatch>
+  </Operation>
+
+</Patch>

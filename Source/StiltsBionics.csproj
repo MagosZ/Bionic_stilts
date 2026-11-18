@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+	<!-- The main DLL: stilts, surgery, movement, drawing, range and the vanilla (non-CE) combat rules. One net48 DLL
+	     for RimWorld 1.6 and 1.7, against the 1.6 reference assemblies; 1.7 runs it through its Unity redirects.
+	     It names no Combat Extended type: the CE rules live in CE/StiltsBionicsCE.csproj, a second DLL that
+	     LoadFolders.xml loads only with CE.
+
+	     Release build:  dotnet build StiltsBionics.csproj -c Release -nodeReuse:false -p:UseSharedCompilation=false
+	     1.7 API check:  dotnet build StiltsBionics.csproj -c Release -p:RW=1.7 -nodeReuse:false -p:UseSharedCompilation=false
+	                     (net10.0 against the 1.7 reference assemblies; output stays in obj/ and is not shipped) -->
+	<PropertyGroup>
+		<TargetFramework Condition="'$(RW)' == '1.6'">net48</TargetFramework>
+		<TargetFramework Condition="'$(RW)' == '1.7'">net10.0</TargetFramework>
+		<RWREF Condition="'$(RW)' == '1.6'">1.6.4871</RWREF>
+		<RWREF Condition="'$(RW)' == '1.7'">1.7.4984-unstable</RWREF>
+		<LangVersion>latest</LangVersion>
+		<Nullable>disable</Nullable>
+		<ImplicitUsings>disable</ImplicitUsings>
+		<AssemblyName>StiltsBionics</AssemblyName>
+		<RootNamespace>StiltsBionics</RootNamespace>
+		<OutputPath Condition="'$(RW)' == '1.6'">..\Assemblies\</OutputPath>
+		<OutputPath Condition="'$(RW)' == '1.7'">$(BaseIntermediateOutputPath)check17\out\</OutputPath>
+		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+		<GenerateDependencyFile>false</GenerateDependencyFile>
+		<CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
+		<DebugType>none</DebugType>
+		<DefaultItemExcludes>$(DefaultItemExcludes);obj/**;bin/**;CE/**;Art/**</DefaultItemExcludes>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Krafs.Rimworld.Ref" Version="$(RWREF)" />
+		<PackageReference Include="Lib.Harmony" Version="2.4.3" ExcludeAssets="runtime" />
+	</ItemGroup>
+</Project>
