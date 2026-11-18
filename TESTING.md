@@ -1,6 +1,7 @@
 # Stilts Bionics: in-game checks
 
-Nothing below has been run in the game yet (2026-11-18: both DLLs compile, the main DLL also against the 1.7 API).
+2026-11-18: tested in game by the author after commit efa33f7: works (no failures reported; which items below were
+covered was not itemised).
 Turn on the dev-mode debug overlay in the mod settings for the line checks (red = blocked, green = clear, number =
 the line's height; a wall is 2.0).
 
