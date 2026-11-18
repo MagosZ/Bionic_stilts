@@ -37,6 +37,14 @@ the line's height; a wall is 2.0).
 4. Build a roof over an extended pawn: it retracts with a message.
 5. Sleeping/lying down outside: stilts fold at once.
 
+## 4a. Speed and leg damage (added after the first test)
+
+1. Extended: health tab tooltip on "telescopic stilts" shows Move speed x110%; the pawn's move speed stat is 10%
+   higher than retracted. Retracting removes it at once. Form a caravan with an extended pawn: it arrives retracted.
+2. Extended, a raider hits the legs in melee: the injury is 1.5x a same hit on a retracted pawn (dev mode: compare
+   damage numbers in the log/health tab). Shots and grenades on the legs: normal. Hits on the torso/head: normal.
+3. With CE: the same through CE's melee (parries/ripostes count as melee).
+
 ## 5. Falling
 
 1. Dev tools: destroy a stilt (or shoot one off) while extended: "fell six metres", ~20 blunt damage over a few parts,

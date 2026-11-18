@@ -50,6 +50,20 @@ namespace StiltsBionics
         }
     }
 
+    /// <summary>A pawn leaving the map (caravan, pod, death) folds its stilts, so nothing extended (the walking bonus
+    /// included) travels with it.</summary>
+    [HarmonyPatch(typeof(Pawn), nameof(Pawn.DeSpawn))]
+    public static class MovementPatch_DeSpawn
+    {
+        public static void Postfix(Pawn __instance)
+        {
+            if (Stilts.AnyStilts)
+            {
+                Stilts.ControllerOf(__instance)?.Notify_DeSpawned();
+            }
+        }
+    }
+
     /// <summary>No attack (ranged or melee) while the stilts are moving.</summary>
     [HarmonyPatch]
     public static class MovementPatch_TryStartCastOn

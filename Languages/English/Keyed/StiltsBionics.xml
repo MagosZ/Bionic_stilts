@@ -2,7 +2,7 @@
 <LanguageData>
 
   <StiltsBionics_Extend>Extend stilts</StiltsBionics_Extend>
-  <StiltsBionics_ExtendDesc>Extend the telescopic stilts to stand six metres tall (2 seconds, standing still). Up there, ranged weapons reach further, cover does not protect the target, and walls near the pawn no longer block its line of fire, nor the enemy's line of fire at it. The pawn stops at the edge of any roof and retracts before walking under it; if drafted, it extends again when it stops in the open.</StiltsBionics_ExtendDesc>
+  <StiltsBionics_ExtendDesc>Extend the telescopic stilts to stand six metres tall (2 seconds, standing still). Up there, the pawn walks 10% faster on long strides but melee hits on its legs do 50% more damage; ranged weapons reach further, cover does not protect the target, and walls near the pawn no longer block its line of fire, nor the enemy's line of fire at it. The pawn stops at the edge of any roof and retracts before walking under it; if drafted, it extends again when it stops in the open.</StiltsBionics_ExtendDesc>
   <StiltsBionics_Retract>Retract stilts</StiltsBionics_Retract>
   <StiltsBionics_RetractDesc>Retract the telescopic stilts back to normal height (2 seconds, standing still).</StiltsBionics_RetractDesc>
 

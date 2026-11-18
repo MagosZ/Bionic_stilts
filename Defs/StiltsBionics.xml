@@ -46,14 +46,28 @@
     <defName>SB_StiltsControl</defName>
     <hediffClass>HediffWithComps</hediffClass>
     <label>telescopic stilts</label>
-    <description>The telescopic struts of a pair of bionic stilts. Extended, they lift the body to a height of six metres: ranged weapons reach further and cover no longer protects the target, but nobody fits under a roof.</description>
+    <description>The telescopic struts of a pair of bionic stilts. Extended, they lift the body to a height of six metres: long strides make the walk 10% faster, ranged weapons reach further and cover no longer protects the target, but melee hits on the legs do 50% more damage and nobody fits under a roof.</description>
     <defaultLabelColor>(0.6, 0.6, 1.0)</defaultLabelColor>
     <isBad>false</isBad>
     <everCurableByItem>false</everCurableByItem>
+    <!-- Severity is the extend state, set by the comp: 0.5 retracted (or moving), 1 extended. -->
+    <initialSeverity>0.5</initialSeverity>
+    <stages>
+      <li>
+        <minSeverity>0</minSeverity>
+      </li>
+      <li>
+        <minSeverity>1</minSeverity>
+        <statFactors>
+          <MoveSpeed>1.1</MoveSpeed>
+        </statFactors>
+      </li>
+    </stages>
     <comps>
       <li Class="StiltsBionics.HediffCompProperties_Stilts">
         <transitionTicks>120</transitionTicks>
         <lift>2.43</lift>
+        <legDamageFactor>1.5</legDamageFactor>
         <fallDamage>20</fallDamage>
         <fallHits>4</fallHits>
         <fallStunTicks>180</fallStunTicks>

@@ -31,6 +31,10 @@ namespace StiltsBionics
         /// <summary>A stilt lost while the stilts are at least this far out makes the pawn fall.</summary>
         public float fallAboveFraction = 0.25f;
 
+        /// <summary>Damage to the stilted legs is multiplied by this while extended (Damage.cs). The walking bonus is
+        /// the extended stage's MoveSpeed factor in XML.</summary>
+        public float legDamageFactor = 1.5f;
+
         public HediffCompProperties_Stilts()
         {
             compClass = typeof(HediffComp_Stilts);
@@ -242,6 +246,31 @@ namespace StiltsBionics
         /// the pawn standing still this tick (the stilts are moving, or it just reached a roof).</summary>
         public bool PatherTick(Pawn_PathFollower pather)
         {
+            bool move = TickState(pather);
+            SyncSeverity();
+            return move;
+        }
+
+        /// <summary>The hediff's severity carries the extend state, so its extended stage (MoveSpeed x1.1 in XML)
+        /// applies exactly while the stilts are fully up; the health system refreshes stats on a stage change.</summary>
+        public void SyncSeverity()
+        {
+            float wanted = state == StiltsState.Extended ? 1f : 0.5f;
+            if (parent != null && parent.Severity != wanted)
+            {
+                parent.Severity = wanted;
+            }
+        }
+
+        /// <summary>The pawn left the map (caravan, transport pod, death): the stilts fold.</summary>
+        public void Notify_DeSpawned()
+        {
+            RetractAtOnce();
+            SyncSeverity();
+        }
+
+        private bool TickState(Pawn_PathFollower pather)
+        {
             Pawn pawn = Pawn;
             Map map = pawn.Map;
             if (map == null)
@@ -348,6 +377,7 @@ namespace StiltsBionics
         {
             Pawn pawn = Pawn;
             RetractAtOnce();
+            SyncSeverity();
             if (pawn.Dead || !pawn.Spawned)
             {
                 return;

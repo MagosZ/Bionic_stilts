@@ -51,6 +51,16 @@ Combat Extended optional.
 - Not standing (downed, lying, asleep): the stilts fold at once, no damage (my call; not discussed).
 - Falling (user): a stilt removed while the stilts are at least 25% out (shot off, cut off) -> on the next tick:
   retract at once, 20 blunt damage split over 4 random outside parts, stun 180 ticks, message.
+- Walking (user, 2026-11-18): +10% MoveSpeed while fully extended ("wider strides"). The controller's severity
+  carries the state (0.5 otherwise, 1 extended; set by `SyncSeverity` every tick) and its extended stage has
+  `statFactors MoveSpeed 1.1`, so the health system refreshes stats and the tooltip shows it. A pawn leaving the map
+  (postfix on `Pawn.DeSpawn`) folds its stilts, so the bonus never travels with a caravan.
+- Leg damage (user, same day: "50% more melee damage, ranged and blast and other sort does not count"): while
+  extended, damage to a stilted leg (or a part below it) x `legDamageFactor` 1.5, only inside a melee cast. Scope =
+  prefix/finalizer on vanilla `Verb_MeleeAttack.TryCastShot` (CE DLL: on `Verb_MeleeAttackCE.TryCastShot`, which
+  overrides it); the multiplier is a prefix on `DamageWorker_AddInjury.FinalizeAndAddInjury(Pawn, float,
+  DamageInfo, DamageResult)`, after armour, once per injured part (signature confirmed in CE's
+  Harmony_DamageWorker_AddInjury.cs). CE pole hits are ranged, so normal.
 - Save/load: state, transition start, auto flag, pending fall saved. Comps register in `Stilts` (pawn -> comp
   dictionary) on add and after load (postfix on `HediffSet.ExposeData`, PostLoadInit, once pawns are assigned).
 
@@ -128,4 +138,4 @@ Range bonus (0.25), CE pole-hit chance (0.15), dev-mode debug overlay (flashes l
 
 - Enemy AI never extends; NPCs never spawn with stilts (no techHediffsTags).
 - Removing stilts from prisoners reports no violation.
-- Melee and move speed unchanged when extended (user: no change).
+- Melee attacks by the pawn itself unchanged when extended.

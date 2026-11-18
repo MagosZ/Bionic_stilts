@@ -19,9 +19,11 @@ EXTEND AND RETRACT
 Select the colonist and press "Extend stilts" or "Retract stilts". Each takes 2 seconds, during which the colonist stands still and can't attack. The stilts can't extend under a roof, and only with both stilts in place. The health tab shows their state.
 
 UP THERE (6 m)
+- Long strides: the colonist walks 10% faster.
 - Ranged weapons reach 25% further (mod setting).
 - Cover does not protect the target, and the colonist's shots never hit cover instead of the target.
 - The colonist is too tall to hide: cover does not protect them either.
+- The stilts are within easy reach of anyone close by: melee hits on the legs do 50% more damage. Shots, blasts and everything else do normal damage.
 - Walls in the half of the line nearest the colonist do not block, in either direction: they can fire over their own wall or over a wall they stand next to, but not over a wall hugging the target, and enemies can shoot them over the same walls. Targets under a roof stay out of reach (the roof is in the way), and so are shooters under a roof.
 - Under Combat Extended this is real 3D: the body is lifted 2.43 units (top 3.43, gun at 3.28; a wall is 2.0), the same height rules as the Elevated Gun Platform mod. Rounds from the stilts fly through sandbags and barricades. Below the body there are only two thin poles: a round crossing them hits a pole 15% of the time (mod setting), and that hit lands on a stilt.
 
